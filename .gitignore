@@ -4,4 +4,15 @@
 npm-debug.log
 yarn-error.log
 .env
-/src/public
+src/public/*
+!src/public/sites/
+src/public/sites/*
+!src/public/sites/default/
+src/public/sites/default/*
+!src/public/sites/default/files/
+src/public/sites/default/files/config_*
+src/public/sites/default/files/css/
+src/public/sites/default/files/js/
+src/public/sites/default/files/php/
+src/public/sites/default/files/styles/
+src/public/sites/default/files/.htaccess
