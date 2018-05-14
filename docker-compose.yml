@@ -1,0 +1,25 @@
+version: '2'
+services:
+  drupal_8:
+    build: ./
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/app
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+    links:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: drupal_8
+      MYSQL_USER: php
+      MYSQL_PASSWORD: 1234php
+      MYSQL_ROOT_PASSWORD: 1234php
+    ports:
+      - "3306:3306"
+
+
+
