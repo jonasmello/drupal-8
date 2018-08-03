@@ -17,7 +17,7 @@ in:
 	docker exec -it drupal bash
 
 export:
-	docker exec -it ${WP_CONTAINER_NAME} wp --allow-root db export db/dump-$(shell date +%F)${file}.sql
+	docker exec -i drupal drush sql-dump > db/${file}.sql
 
 import:
 	docker exec -i drupal drush sqlc < db/${file} && make cr
