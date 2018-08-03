@@ -1,25 +1,23 @@
-version: '2'
+version: '3'
 services:
-  drupal_8:
-    build: ./
-    ports:
-      - "80:80"
+  drupal:
+    build: "./.docker/"
+    container_name: drupal
     volumes:
-      - ./:/app
-      - ./src:/var/www/html
-    depends_on:
-      - mysql
-    links:
-      - mysql
-  mysql:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: drupal_8
-      MYSQL_USER: php
-      MYSQL_PASSWORD: 1234php
-      MYSQL_ROOT_PASSWORD: 1234php
+    - "./env/settings.local.php:/var/www/html/sites/default/settings.php"
+    - "./src/files:/var/www/html/sites/default/files/"
     ports:
-      - "3306:3306"
+    - "80:80"
+    - "443:443"
+#    environment:
+    links:
+    - mysql
 
-
-
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    ports:
+    - "3306:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=123
+    - MYSQL_DATABASE=drupal
